@@ -125,6 +125,16 @@ Symbol Tokenise::get_op()
         sym.precedence = 3;
     }
 
+    else if(!buf.compare(0, 1, "("))
+    {
+        sym.type = LPAREN;
+    }
+
+    else if(!buf.compare(0, 1, ")"))
+    {
+        sym.type = RPAREN;
+    }
+
     else if(!buf.compare(0, 1, "=") && command == IF)
     {
         sym.type = EQ;
@@ -267,7 +277,7 @@ void Tokenise::print()
 
 int Tokenise::isop(char in)
 {
-    std::string s = "*/+-<>=,";
+    std::string s = "*/+-<>=,()";
     if(s.find(in) != std::string::npos) return 1;
     return 0;
 }
