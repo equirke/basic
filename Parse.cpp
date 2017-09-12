@@ -51,6 +51,13 @@ void Parse::factor()
         m.push_var(peek());
         nextsym();
     }
+    else if(match(LPAREN))
+    {
+        nextsym();
+        expression();
+        expect(RPAREN);
+        nextsym();
+    }
     else throw std::string("On line " + std::to_string(pc->first) + ":Expected factor, found " + SymName[peek().type]);
 }
 
